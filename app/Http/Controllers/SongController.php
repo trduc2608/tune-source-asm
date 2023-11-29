@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\Song;
 use Illuminate\Http\Request;
+
 
 class SongController extends Controller
 {
     // Display a listing of the songs
-    public function index()
+    public function index(Request $request)
     {
-        $songs = Song::all();
+        // $songs = Song::all();
+        $songs = Song::query();
+
+        if ($request->has('title')) {
+            $songs->where('title', 'LIKE', "%{$request->title}%");
+        }
+
+        $songs = $songs->get();
+
         return view('dashboard', compact('songs'));
     }
 
@@ -85,4 +95,6 @@ class SongController extends Controller
         $song->delete();
         return redirect()->route('dashboard')->with('success', 'Song deleted successfully.');
     }
+
+
 }

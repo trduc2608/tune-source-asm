@@ -5,16 +5,25 @@
     <div class="py-6">
         <div class="w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-black dark:bg-gray-800
-        overflow-hidden shadow-sm sm:rounded-lg">
+            overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <!-- table here -->
                     <div class="flex flex-wrap justify-between items-center mb-4">
                         <h1 class="text-xl font-semibold text-gray-200">Songs</h1>
+                        <!-- search -->
+                        <form action="{{ route('songs.index') }}" method="GET" class="flex items-center space-x-4 ">
+                            <input type="text" name="title" id="title" placeholder="Enter song title"
+                                value="{{ request('title') }}"
+                                class=" border border-gray-300 rounded px-2 py-1 w-64 text-black" style="color:black">
+                            <button type="submit"
+                                class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600 text-white">Search</button>
+                        </form>
+
                         @can('manage-songs')
                         <a href="{{ route('songs.create') }}"
                             class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add New
                             Song</a>
-                            @endcan
+                        @endcan
                     </div>
                     <div class="overflow-x-auto bg-black rounded-lg shadow overflow-y-auto relative"
                         style="height: 405px;">
@@ -23,28 +32,28 @@
                             <thead>
                                 <tr class="text-left">
                                     <th class="py-2 px-3 sticky top-0 border-b border-gray-900 dark:border-gray-900 bg-gray-900
-            dark:bg-gray-900">ID</th>
+                dark:bg-gray-900">ID</th>
                                     <th class="py-2 px-3 sticky top-0 border-b border-gray-900 dark:border-gray-900 bg-gray-900
-            dark:bg-gray-900">
+                dark:bg-gray-900">
                                         Thumb</th>
                                     <th class="py-2 px-3 sticky top-0 border-b border-gray-900 dark:border-gray-900 bg-gray-900
-        dark:bg-gray-900">Title</th>
+            dark:bg-gray-900">Title</th>
                                     <th class="py-2 px-3 sticky top-0 border-b border-gray-900 dark:border-gray-900 bg-gray-900
-        dark:bg-gray-900">Genres</th>
+            dark:bg-gray-900">Genres</th>
                                     <th class="py-2 px-3 sticky top-0 border-b border-gray-900 dark:border-gray-900 bg-gray-900
-            dark:bg-gray-900">
+                dark:bg-gray-900">
                                         Artists</th>
                                     <th class="py-2 px-3 sticky top-0 border-b border-gray-900 dark:border-gray-900 bg-gray-900
-            dark:bg-gray-900">Created At</th>
+                dark:bg-gray-900">Created At</th>
                                     <th class="py-2 px-3 sticky top-0 border-b border-gray-900 dark:border-gray-900 bg-gray-900
-        dark:bg-gray-900">Audio</th>
+            dark:bg-gray-900">Audio</th>
                                     <th class="py-2 px-3 sticky top-0 border-b border-gray-900 dark:border-gray-900 bg-gray-900
-        dark:bg-gray-900">Action</th>
+            dark:bg-gray-900">Action</th>
                                 </tr>
                             </thead>
                             <tbody> @foreach ($songs as $song) <tr>
                                     <td class="border-dashed border-t border-gray-900
-            dark:border-gray-800 px-3 py-2">{{ $song->id }}</td>
+                dark:border-gray-800 px-3 py-2">{{ $song->id }}</td>
                                     <td class="border-dashed border-t border-gray-200 dark:border-gray-800 px-3 py-2">
                                         <img src="{{ Storage::url($song->thumb) }}" alt="{{ $song->title }}"
                                             class="w-16 h-16 object-cover">

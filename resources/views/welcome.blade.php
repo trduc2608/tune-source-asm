@@ -862,25 +862,25 @@
             </div>
             <br>
 
-            
-                <table
-                    class="border-collapse table-auto w-full whitespace-no-wrap bg-black dark:bg-black table-striped relative dark:text-gray-400">
 
-                    <tbody> @foreach ($songs as $song) <tr>
-                            <td class="border-dashed border-t border-gray-200 dark:border-gray-800 max-w-7xl mx-auto p-6 lg:p-8">
-                                <img src="{{ Storage::url($song->thumb) }}" alt="{{ $song->title }}"
-                                    class="w-auto h-16 ">
-                            </td>
-                            <td class="border-dashed border-t border-gray-200 dark:border-gray-800 ">
-                                <audio controls>
-                                    <source src="{{ Storage::url($song->audio) }}" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <table
+                class="border-collapse table-auto w-full whitespace-no-wrap bg-black dark:bg-black table-striped relative dark:text-gray-400">
+
+                <tbody> @foreach ($songs as $song) <tr>
+                        <td
+                            class="border-dashed border-t border-gray-200 dark:border-gray-800 max-w-7xl mx-auto p-6 lg:p-8">
+                            <img src="{{ Storage::url($song->thumb) }}" alt="{{ $song->title }}" class="w-auto h-16 ">
+                        </td>
+                        <td class="border-dashed border-t border-gray-200 dark:border-gray-800 ">
+                            <audio controls>
+                                <source src="{{ Storage::url($song->audio) }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

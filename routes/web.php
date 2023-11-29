@@ -21,7 +21,6 @@ Route::resource('songs', SongController::class);
 Route::get('/', function () {
     $songs = Song::all();
     return view('welcome', compact('songs'));
-    // return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
